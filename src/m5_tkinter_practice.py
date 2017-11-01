@@ -2,8 +2,8 @@
 This project lets you try out Tkinter/Ttk and practice it!
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Andrew Blonsky.
+"""  # Done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import tkinter
 from tkinter import ttk
@@ -12,37 +12,52 @@ from tkinter import ttk
 def main():
     """ Constructs a GUI with stuff on it. """
     # ------------------------------------------------------------------
-    # TODO: 2. After reading and understanding the m1e module,
+    # Done: 2. After reading and understanding the m1e module,
     #   ** make a window that shows up. **
     # ------------------------------------------------------------------
+    root = tkinter.Tk()
 
     # ------------------------------------------------------------------
-    # TODO: 3. After reading and understanding the m2e module,
+    # Done: 3. After reading and understanding the m2e module,
     #   ** put a Frame on the window. **
     # ------------------------------------------------------------------
+    Frame1 = ttk.Frame(root, padding=20)
+    Frame1.grid()
 
     # ------------------------------------------------------------------
-    # TODO: 4. After reading and understanding the m2e module,
+    # Done: 4. After reading and understanding the m2e module,
     #   ** put a Button on the Frame. **
     # ------------------------------------------------------------------
+    buttons=ttk.Button(Frame1, text='Button',padding=10)
+    buttons.grid()
 
     # ------------------------------------------------------------------
-    # TODO: 5. After reading and understanding the m3e module,
+    # Done: 5. After reading and understanding the m3e module,
     #   ** make your Button respond to a button-press **
     #   ** by printing   "Hello"  on the Console.     **
     # ------------------------------------------------------------------
+    buttons['command'] =(lambda: pressed())
 
     # ------------------------------------------------------------------
-    # TODO: 6. After reading and understanding the m4e module,
+    # Done: 6. After reading and understanding the m4e module,
     #   -- Put an Entry box on the Frame.
     #   -- Put a second Button on the Frame.
     #   -- Make this new Button, when pressed, print "Hello"
     #        on the Console if the current string in the Entry box
     #        is the string 'ok', but print "Goodbye" otherwise.
     # ------------------------------------------------------------------
-
+    my_entry_box = ttk.Entry(Frame1)
+    my_entry_box.grid()
+    morebuttons = ttk.Button(Frame1, text='Judge', padding=10)
+    morebuttons.grid()
+    morebuttons['command']=(lambda:check(my_entry_box))
+    my_other_entry_box = ttk.Entry(Frame1)
+    my_other_entry_box.grid()
+    finalbutton = ttk.Button(Frame1, text = 'repeter', padding = 30)
+    finalbutton.grid()
+    finalbutton['command']=(lambda:repeter(my_entry_box,my_other_entry_box))
     # ------------------------------------------------------------------
-    # TODO: 7.
+    # Done: 7.
     #    -- Put a second Entry on the Frame.
     #    -- Put a third Button on the frame.
     #    -- Make this new Button respond to a button-press as follows:
@@ -66,10 +81,20 @@ def main():
     ####################################################################
 
     # ------------------------------------------------------------------
-    # TODO: 8. As time permits, do other interesting GUI things!
+    # TO DO: 8. As time permits, do other interesting GUI things!
     # ------------------------------------------------------------------
+    root.mainloop()
 
-
+def pressed():
+    print("Hello")
+def check(entrybox):
+    if entrybox.get() == "ok":
+        print("Hello")
+    else:
+        print("Goodbye")
+def repeter(entrybox2, entrybox1):
+    for k in range(int(entrybox1.get())):
+        print(entrybox2.get())
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # ----------------------------------------------------------------------
